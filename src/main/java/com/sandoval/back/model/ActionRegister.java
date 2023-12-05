@@ -35,6 +35,10 @@ public class ActionRegister {
         this.admin = admin;
     }
 
+    public ActionRegister() {
+
+    }
+
     public Long getIdActionRegister() {
         return idActionRegister;
     }

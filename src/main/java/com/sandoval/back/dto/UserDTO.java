@@ -1,58 +1,31 @@
-package com.sandoval.back.model;
+package com.sandoval.back.dto;
 
-import com.sandoval.back.model.Account;
-import jakarta.persistence.*;
+public class UserDTO {
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "admin")
-public class Admin {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_admin")
-    private Long idAdmin;
-
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "cel_number")
     private String celNumber;
-
-    @Lob
-    @Column(name = "perfil_user", columnDefinition = "LONGBLOB")
     private byte[] perfilUser;  // Cambiado a un array de bytes para representar una imagen
+    private Long idAccount;  // Podría ser el ID de la cuenta asociada
+    private Long idCareer;   // Podría ser el ID de la carrera asociada
 
-    @ManyToOne
-    @JoinColumn(name = "id_account")
-    private Account account;
+    // Constructores, getters y setters
 
-    public Admin() {
+    public UserDTO() {
     }
 
-    public Admin(String firstName, String lastName, String email, String celNumber, byte[] perfilUser, Account account) {
+    public UserDTO(String firstName, String lastName, String email, String celNumber, byte[] perfilUser, Long idAccount, Long idCareer) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.celNumber = celNumber;
         this.perfilUser = perfilUser;
-        this.account = account;
+        this.idAccount = idAccount;
+        this.idCareer = idCareer;
     }
 
-    public Long getIdAdmin() {
-        return idAdmin;
-    }
-
-    public void setIdAdmin(Long idAdmin) {
-        this.idAdmin = idAdmin;
-    }
+    // Getters y setters
 
     public String getFirstName() {
         return firstName;
@@ -94,11 +67,19 @@ public class Admin {
         this.perfilUser = perfilUser;
     }
 
-    public Account getAccount() {
-        return account;
+    public Long getIdAccount() {
+        return idAccount;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setIdAccount(Long idAccount) {
+        this.idAccount = idAccount;
+    }
+
+    public Long getIdCareer() {
+        return idCareer;
+    }
+
+    public void setIdCareer(Long idCareer) {
+        this.idCareer = idCareer;
     }
 }

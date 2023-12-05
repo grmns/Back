@@ -3,30 +3,30 @@ package com.sandoval.back.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "reaction_register")
 public class ReactionRegister {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reaction_register")
     private Long idReactionRegister;
 
-    @Column(name = "like")
-    private boolean like;
-
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
+    @Column(name = "reaction_like")
+    private Boolean like;
 
     @ManyToOne
     @JoinColumn(name = "id_post")
     private Post post;
 
-    public ReactionRegister(Long idReactionRegister, boolean like, User user, Post post) {
-        this.idReactionRegister = idReactionRegister;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+
+    public ReactionRegister() {
+    }
+
+    public ReactionRegister(Boolean like, Post post, User user) {
         this.like = like;
-        this.user = user;
         this.post = post;
+        this.user = user;
     }
 
     public Long getIdReactionRegister() {
@@ -37,12 +37,20 @@ public class ReactionRegister {
         this.idReactionRegister = idReactionRegister;
     }
 
-    public boolean isLike() {
+    public Boolean getLike() {
         return like;
     }
 
-    public void setLike(boolean like) {
+    public void setLike(Boolean like) {
         this.like = like;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public User getUser() {
@@ -53,11 +61,5 @@ public class ReactionRegister {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 }
+
