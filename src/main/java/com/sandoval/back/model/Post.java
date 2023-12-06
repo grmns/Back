@@ -38,19 +38,20 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReactionRegister> reactions = new ArrayList<>();
 
-    public Post(Long idPost, String title, String context, byte[] image, LocalDateTime publicationDateTime, User user, Category category) {
-        this.idPost = idPost;
+
+    public Post() {
+    }
+
+    public Post(String title, String context, byte[] image, LocalDateTime publicationDateTime, User user, Category category) {
         this.title = title;
         this.context = context;
         this.image = image;
         this.publicationDateTime = publicationDateTime;
         this.user = user;
         this.category = category;
-    }
-
-    public Post() {
-
     }
 
     public Long getIdPost() {
@@ -115,5 +116,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<ReactionRegister> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<ReactionRegister> reactions) {
+        this.reactions = reactions;
     }
 }

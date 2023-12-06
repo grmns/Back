@@ -2,6 +2,9 @@ package com.sandoval.back.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -34,6 +37,21 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "id_career")
     private Career career;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReactionRegister> reactions = new ArrayList<>();
+
+    public User(List<ReactionRegister> reactions) {
+        this.reactions = reactions;
+    }
+
+    public List<ReactionRegister> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<ReactionRegister> reactions) {
+        this.reactions = reactions;
+    }
 
     public User(Long idUser, String firstName, String lastName, String email, String celNumber, byte[] perfilUser, Account account, Career career) {
         this.idUser = idUser;

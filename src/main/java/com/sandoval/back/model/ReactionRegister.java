@@ -3,10 +3,12 @@ package com.sandoval.back.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "reaction_register")
 public class ReactionRegister {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_reaction_register")
     private Long idReactionRegister;
 
     @Column(name = "reaction_like")
@@ -19,6 +21,7 @@ public class ReactionRegister {
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
+
 
     public ReactionRegister() {
     }
@@ -60,6 +63,4 @@ public class ReactionRegister {
     public void setUser(User user) {
         this.user = user;
     }
-
 }
-
